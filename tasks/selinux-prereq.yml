@@ -1,0 +1,32 @@
+---
+
+- name: Test to see if selinux is running
+  command: getenforce
+  register: sestatus
+  changed_when: false
+  sudo: true
+
+- name: seLinux is present
+  set_fact:
+    selinux_status: 'present'
+  when: sestatus.stdout in ['Permissive', 'Disabled', 'Enforcing']
+
+- name: selinux not present
+  set_fact:
+    selinux_status: 'absent'
+  when: sestatus.stderr != ''
+
+
+- name: Redhat | Install libselinux-python
+  yum:
+    name: libselinux-python
+    state: present
+  when: selinux_status != 'absent' and ansible_os_family == 'RedHat'
+  sudo: true
+
+- name: Debian/Ubuntu | Install libselinux-python
+  apt:
+    name: libselinux-python
+    state: present
+  when: selinux_status != 'absent' and ansible_os_family == 'Debian'
+  sudo: true

@@ -1,4 +1,6 @@
-Role Name
+[![Build Status](https://travis-ci.org/Blue-Bag/ansible-role-first5init.svg?branch=master)](https://travis-ci.org/Blue-Bag/ansible-role-first5init)
+
+# Ansible Role: First5Init
 =========
 
 Part of the Blue-Bag First5 set.
@@ -21,17 +23,17 @@ TO_DO: enumerate states - it maybe necessary for other tasks to determine the ac
 At present it only sets present | absent
 
 
-Requirements
+## Requirements
 ------------
 
 None
 
-Role Variables
+## Role Variables
 --------------
 
 
 
-Dependencies
+## Dependencies
 ------------
 
 None
@@ -48,12 +50,12 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
         - { role: ansible-role-first5init, tags: ['provision'], become: true}
 
-License
+## License
 -------
 
-BSD
+MIT / BSD
 
-Author Information
+## Author Information
 ------------------
 
 George Boobyer Blue-Bag

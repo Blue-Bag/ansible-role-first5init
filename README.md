@@ -37,12 +37,12 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-- hosts: servers
-  gather_facts: true
-  tags: ['provision_core']
+    - hosts: servers
+      gather_facts: true
+      tags: ['provision_core']
 
-  roles:
-    - { role: ansible-role-first5init, tags: ['provision'], sudo: true}
+      roles:
+        - { role: ansible-role-first5init, tags: ['provision'], sudo: true}
 
 License
 -------
@@ -56,3 +56,5 @@ George Boobyer Blue-Bag
 
 refs:
 https://github.com/ansible/ansible-examples/commit/c769d5e045cb8e5b992c9ad71f9ee2109cb2c897
+
+

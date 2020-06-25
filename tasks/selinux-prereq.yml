@@ -24,20 +24,15 @@
 
   - name: Redhat | Install libselinux-python
     yum:
-      name: "{{ item }}"
+      name: ['libsemanage-python','libselinux-python']
       state: present
-    with_items:
-      - libsemanage-python
-      - libselinux-python
     when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'RedHat'
     become: true
 
   - name: Debian/Ubuntu | Install libselinux-python
     apt:
-      name: "{{ item }}"
+      name: ['python-selinux']
       state: present
-    with_items:
-      - python-selinux
     when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'Debian'
 
   - name: Set SELinux vars for server

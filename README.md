@@ -9,6 +9,10 @@ At present it contains the following tasks:
 
 SELInux  Prerequisites:
 
+If SELinux is installed you may get the following message:
+
+  msg: Aborting, target uses selinux but python bindings (libselinux-python) aren't installed!
+
 If SELinux is installed then we need the python library - libselinux-python
 
 Handy check to to a fact if SELInux is in operation

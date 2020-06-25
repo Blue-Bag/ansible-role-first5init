@@ -8,10 +8,13 @@ This role is designed to be run first to run any initialising tasks
 At present it contains the following tasks:
 
 SELInux  Prerequisites:
+
 If SELinux is installed then we need the python library - libselinux-python
+
 Handy check to to a fact if SELInux is in operation
+
 TO_DO: enumerate states - it maybe necessary for other tasks to determine the actual state
-At present it only sets presnt | absent
+At present it only sets present | absent
 
 
 Requirements

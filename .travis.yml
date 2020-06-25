@@ -53,9 +53,6 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Test if exim is working.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ps waux | grep [e]xim'
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm exim -bV'
 
 notifications:
   slack:

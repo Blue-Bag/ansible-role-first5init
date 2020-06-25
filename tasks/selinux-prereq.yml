@@ -1,50 +1,50 @@
 ---
+- block:
+  - name: Test to see if selinux is running
+    command: getenforce
+    register: sestatus
+    changed_when: false
+    ignore_errors: true
 
-- name: Test to see if selinux is running
-  command: getenforce
-  register: sestatus
-  changed_when: false
-  ignore_errors: true
+  - name: debuf sestatus
+    debug:
+      var: sestatus
+      verbosity: 3
 
-- name: debuf sestatus
-  debug:
-    var: sestatus
-    verbosity: 3
+  - name: seLinux is present
+    set_fact:
+      selinux_status: 'present'
+    when: sestatus is defined and not sestatus.failed and sestatus.stdout in ['Permissive', 'Disabled', 'Enforcing']
 
-- name: seLinux is present
-  set_fact:
-    selinux_status: 'present'
-  when: sestatus is defined and not sestatus.failed and sestatus.stdout in ['Permissive', 'Disabled', 'Enforcing']
-
-- name: selinux not present
-  set_fact:
-    selinux_status: 'absent'
-  when: sestatus is defined and sestatus.failed
+  - name: selinux not present
+    set_fact:
+      selinux_status: 'absent'
+    when: sestatus is defined and sestatus.failed
 
 
-- name: Redhat | Install libselinux-python
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - libsemanage-python
-    - libselinux-python
-  when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'RedHat'
-  become: true
+  - name: Redhat | Install libselinux-python
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - libsemanage-python
+      - libselinux-python
+    when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'RedHat'
+    become: true
 
-- name: Debian/Ubuntu | Install libselinux-python
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - libsemanage-python
-    - libselinux-python
-  when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'Debian'
+  - name: Debian/Ubuntu | Install libselinux-python
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - python-selinux
+    when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'Debian'
 
-- name: Set SELinux vars for server
-  seboolean:
-    name: "{{ item.name }}"
-    state: "{{ item.enabled }}"
-    persistent: "{{ item.persistent }}"
-  with_items: "{{selinux_sebooleans}}"
-  when: sestatus is defined and selinux_status != 'absent'
+  - name: Set SELinux vars for server
+    seboolean:
+      name: "{{ item.name }}"
+      state: "{{ item.enabled }}"
+      persistent: "{{ item.persistent }}"
+    with_items: "{{selinux_sebooleans}}"
+    when: sestatus is defined and selinux_status != 'absent'
+  when: ansible_os_family == 'RedHat'

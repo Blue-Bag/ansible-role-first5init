@@ -1,2 +1,29 @@
 ---
 # defaults file for ansible-role-first5init
+
+#  https://wiki.centos.org/TipsAndTricks/SelinuxBooleans
+
+selinux_sebooleans: []
+  # name: sebool name
+  # enable: [yes / no ] - set on or off
+  # persistent: [yes / no ] - survive reboots
+  # - {
+  # 	  name: 'httpd_can_network_connect',
+  # 	  enabled: yes
+  # 	  persistent: yes
+  # }
+  #   - {
+  # 	  name: httpd_can_network_connect_db
+  # 	  enabled: yes
+  # 	  persistent: yes
+  # }
+  #   - {
+  # 	  name: httpd_can_network_relay
+  # 	  enabled: yes
+  # 	  persistent: yes
+  # }
+  #   - {
+  # 	  name: httpd_can_network_memcache
+  # 	  enabled: yes
+  # 	  persistent: yes
+  # }

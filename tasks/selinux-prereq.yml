@@ -42,5 +42,5 @@
     name: "{{ item.name }}"
     state: "{{ item.enabled }}"
     persistent: "{{ item.persistent }}"
-  with_items: selinux_sebooleans
+  with_items: "{{selinux_sebooleans}}"
   when: sestatus is defined and selinux_status != 'absent'

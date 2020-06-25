@@ -6,16 +6,20 @@
   changed_when: false
   ignore_errors: true
 
+- name: debuf sestatus
+  debug:
+    var: sestatus
+    verbosity: 3
 
 - name: seLinux is present
   set_fact:
     selinux_status: 'present'
-  when: sestatus is defined and sestatus.stdout in ['Permissive', 'Disabled', 'Enforcing']
+  when: sestatus is defined and not sestatus.failed and sestatus.stdout in ['Permissive', 'Disabled', 'Enforcing']
 
 - name: selinux not present
   set_fact:
     selinux_status: 'absent'
-  when: sestatus is defined and sestatus.stderr != ''
+  when: sestatus is defined and sestatus.failed
 
 
 - name: Redhat | Install libselinux-python

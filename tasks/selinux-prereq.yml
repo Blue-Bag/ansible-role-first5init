@@ -26,7 +26,7 @@
     - libsemanage-python
     - libselinux-python
   when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'RedHat'
-  sudo: true
+  become: true
 
 - name: Debian/Ubuntu | Install libselinux-python
   apt:

@@ -46,7 +46,7 @@ Including an example of how to use your role (for instance, with variables passe
       tags: ['provision_core']
 
       roles:
-        - { role: ansible-role-first5init, tags: ['provision'], sudo: true}
+        - { role: ansible-role-first5init, tags: ['provision'], become: true}
 
 License
 -------

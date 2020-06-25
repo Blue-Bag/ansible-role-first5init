@@ -24,7 +24,7 @@
 
   - name: Redhat | Install libselinux-python
     yum:
-      name: ['libsemanage-python','libselinux-python']
+      name: ['libsemanage-python', 'libselinux-python']
       state: present
     when: sestatus is defined and selinux_status != 'absent' and ansible_os_family == 'RedHat'
     become: true
@@ -40,6 +40,6 @@
       name: "{{ item.name }}"
       state: "{{ item.enabled }}"
       persistent: "{{ item.persistent }}"
-    with_items: "{{selinux_sebooleans}}"
+    with_items: "{{ selinux_sebooleans }}"
     when: sestatus is defined and selinux_status != 'absent'
   when: ansible_os_family == 'RedHat'

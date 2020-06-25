@@ -1,22 +1,22 @@
 ---
 galaxy_info:
   author: George Boobyer
-  description:
+  description: First5 init tasks
   company: "Blue-Bag Ltd"
   license: MIT / BSD
   min_ansible_version: 1.2
   platforms:
-  - name: EL
-    versions:
-    - all
-  - name: Ubuntu
-    versions:
-    - all
-    - trusty
-  - name: Debian
-    versions:
-    - squeeze
-    - wheezy
-  categories:
+    - name: EL
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+        - trusty
+    - name: Debian
+      versions:
+        - squeeze
+        - wheezy
+  galaxy_tags:
     - system
 dependencies: []

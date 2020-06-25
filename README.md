@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Blue-Bag/ansible-role-first5init.svg?branch=master)](https://travis-ci.org/Blue-Bag/ansible-role-first5init)
+[![Build Status](https://travis-ci.org/Blue-Bag/ansible-role-first5init.svg?branch=main)](https://travis-ci.org/Blue-Bag/ansible-role-first5init)
 
 # Ansible Role: First5Init
 =========
@@ -62,5 +62,3 @@ George Boobyer Blue-Bag
 
 refs:
 https://github.com/ansible/ansible-examples/commit/c769d5e045cb8e5b992c9ad71f9ee2109cb2c897
-
-

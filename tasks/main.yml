@@ -1,4 +1,4 @@
 ---
 # tasks file for ansible-role-first5init
 
-- include: selinux-prereq.yml
+- include_tasks: selinux-prereq.yml
